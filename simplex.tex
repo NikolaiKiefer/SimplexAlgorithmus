@@ -130,4 +130,119 @@ An dem Punkt wo sich Pivotzeile und Spalte treffen(Grün eingefärbt) ist unser 
 	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
 	\hline
 \end{tabular}\\\\
+\paragraph{Soweit so gut, Nun fängt der Austauschschritt an}
+wir haben unser Tableu mit dem Pivot Element\\\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
+	\hline
+	(1)&$x_{3}$&2&2&1&0&0&16&16/2 = 8\\
+	\hline
+	(2)&$x_{4}$&\cellcolor{green}4&2&0&1&0&24&24/4 = 6\\
+	\hline
+	(3)&$x_{5}$&4&6&0&0&1&36&36/4 = 9\\
+	\hline
+	(3')&F&-80&-60&0&0&0&0&\\
+	\hline
+\end{tabular}\\\\
+Nun legen wir ein neues Tableu an, mit dem ausgetauschten $x_{4}$ und $x_{1}$ und neuen Zeilennummern\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV &\cellcolor{blue} $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
+	\hline
+	(4)&$x_{3}$&&&&&&&\\
+	\hline
+	(5)&\cellcolor{blue}$x_{1}$&&&&&&&\\
+	\hline
+	(6)&$x_{5}$&&&&&&&\\
+	\hline
+	(6')&F&&&&&&&\\
+	\hline
+\end{tabular}\\\\
+Nun wird das Pivotelement durch Teilen auf 1 gebracht und der Rest der Zeile wird durch den gleichen Betrag geteilt. Hier also 4. Wir färben es grün ein\\ 
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV &$x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$&Operation\\
+	\hline
+	(4)&$x_{3}$&&&&&&&&\\
+	\hline
+	(5)&$x_{1}$&\cellcolor{green}1&\cellcolor{green}$\frac{1}{2}$&\cellcolor{green}0&\cellcolor{green}$\frac{1}{4}$&\cellcolor{green}0&\cellcolor{green}6&&(2):4\\
+	\hline
+	(6)&$x_{5}$&&&&&&&&\\
+	\hline
+	(6')&F&&&&&&&&\\
+	\hline
+\end{tabular}\\\\
+Nun muss für die selbe Spalte wie das Pivot Element 0 eingetragen werden bzw. wird die Zeile so oft auf die anderen Addiert bzw. Subtrahiert bis es 0 ergibt. Dazu gleich mehr(wir haben es Gelb eingefärbt)\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV &$x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$&Operation\\
+	\hline
+	(4)&$x_{3}$&\cellcolor{yellow}0&&&&&&&\\
+	\hline
+	(5)&$x_{1}$&1&$\frac{1}{2}$&0&$\frac{1}{4}$&0&6&&(2):4\\
+	\hline
+	(6)&$x_{5}$&\cellcolor{yellow}0&&&&&&&\\
+	\hline
+	(6')&F&&&&&&&&\\
+	\hline
+\end{tabular}\\\\
+Nun für also für Zeile (4) bspw. muss Zeile(5) zweimal bzw. Zeile (2) ein halbes mal abezogen werden(wir färben es grün ein)\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV &$x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$&Operation\\
+	\hline
+	(4)&$x_{3}$&\cellcolor{green}0&\cellcolor{green}1&\cellcolor{green}1&\cellcolor{green}$-\frac{1}{2}$&\cellcolor{green}0&\cellcolor{green}4&&(1)-2(5)\\
+	\hline
+	(5)&$x_{1}$&1&$\frac{1}{2}$&0&$\frac{1}{4}$&0&6&&(2):4\\
+	\hline
+	(6)&$x_{5}$&0&&&&&&&\\
+	\hline
+	(6')&F&&&&&&&&\\
+	\hline
+\end{tabular}\\\\
+Das geliche für Zeile (6) (wieder Grün eingefärbt)\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV &$x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$&Operation\\
+	\hline
+	(4)&$x_{3}$&0&1&1&$-\frac{1}{2}$&0&4&&(1)-2(5)\\
+	\hline
+	(5)&$x_{1}$&1&$\frac{1}{2}$&0&$\frac{1}{4}$&0&6&&(2):4\\
+	\hline
+	(6)&$x_{5}$&\cellcolor{green}0&\cellcolor{green}4&\cellcolor{green}0&\cellcolor{green}-1&\cellcolor{green}1&\cellcolor{green}12&&(3)-4(5)\\
+	\hline
+	(6')&F&&&&&&&&\\
+	\hline
+\end{tabular}\\\\
+Zu guter letzt natürlich noch die (6`) Zeile (hier Blau gefärbt)\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV &$x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$&Operation\\
+	\hline
+	(4)&$x_{3}$&0&1&1&$-\frac{1}{2}$&0&4&&(1)-2(5)\\
+	\hline
+	(5)&$x_{1}$&1&$\frac{1}{2}$&0&$\frac{1}{4}$&0&6&&(2):4\\
+	\hline
+	(6)&$x_{5}$&0&4&0&-1&1&12&&(3)-4(5)\\
+	\hline
+	(6')&F&\cellcolor{blue}0&\cellcolor{blue}-20&\cellcolor{blue}0&\cellcolor{blue}20&\cellcolor{blue}0&\cellcolor{blue}480&&(3')+20(5)\\
+	\hline
+\end{tabular}\\\\
+Wären nun in der (6') Zeile keine negativen Zahlen hätten wir eine optimale Lösung. Da aber noch die -20 drin stehen können wir weiter optimieren. Hätten wir bereits eine optimale Lösung müssten wir nu noch die Spalte $b_{i}$ ablesen. Da dort die Werte zu den getauschten BVs stehen und der gesamt Wert.\\\\
+Da dem aber nicht so ist müssen wir eine weitere Iteration machen und wieder schauen.\\
+Dies habe ich hier gemacht und wie sie sehen, gibt es keine negative Zahl mehr in zeile (9'). Dies bedeutet das es nichts mehr zu optimieren gibt. Wir können nun die optimale Lösung ablesen. Ich habe es hierfür Grün eingefärbt. 
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV &$x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
+	\hline
+	(7)&$x_{3}$&0&0&1&$-\frac{1}{4}$&-$\frac{1}{4}$&1&\\
+	\hline
+	(8)&\cellcolor{green}$x_{1}$&0&0&0&$\frac{3}{8}$&-$\frac{1}{8}$&\cellcolor{green}$\frac{9}{2}$&\\
+	\hline
+	(9)&\cellcolor{green}$x_{2}$&0&1&0&-$\frac{1}{4}$&$\frac{1}{4}$&\cellcolor{green}3&\\
+	\hline
+	(9')&\cellcolor{green}F&0&0&0&15&5&\cellcolor{green}540&\\
+	\hline
+\end{tabular}\\\\
 \end{document}
