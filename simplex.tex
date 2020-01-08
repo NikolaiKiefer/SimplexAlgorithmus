@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage{colortbl} 
+\begin{document}
+\paragraph{Einführung}
+Dies ist eine Erklärung des Simplex Algorithmus. Weshalb es ihn gibt und wie er funktioniert\\
+Zu aller erst sollte geklärt werden wann der simplex überhaupt benutzt wird.\\\\ 
+\paragraph{Wann wird der Simplex benutzt?}
+Der Simplex wird benutzt um eine maximierungs Problem zu lösen
+\paragraph{Welche Bedingungen müssen vorherrschen?}
+\begin{itemize}
+	\item{Das Problem muss in der \textbf{Normalform} vorliegen}
+	\item{Die \textbf{rechte Seite} darf \textbf{nicht negativ} sein!!! Ganz wichtig Niko}
+	\item{Es muss eine \textbf{Einheitsmatrix} unter den Schlupfvariabeln vorliegen}
+\end{itemize}
+\paragraph{Wie sieht die Normalform aus}
+Zu aller erst unser Maximierungsproblem\\
+$Max F(x) = 81x_{1} + 60x_{2}$\\\\
+Dann unsere Nebenbedingungen auch Restriktionen genannt
+\begin{enumerate}
+	\item{$2x_{1} + 2x_{2} \leq 16 $}
+	\item{$4x_{1} + 2x_{2} \leq 24 $}
+	\item{$4x_{1} + 6x_{2} \leq 36 $}
+	\item[]{$x_{1},x_{2} \geq 0$}
+\end{enumerate}
+Dadurch sieht die Normalform also so aus\\
+\begin{enumerate}
+	\item{$2x_{1} + 2x_{2} + x_{3} = 16 $}
+	\item{$4x_{1} + 2x_{2} + x_{4} = 24 $}
+	\item{$4x_{1} + 6x_{2} + x_{5} = 36 $}
+	\item[]{$x_{1},x_{2} \geq 0$}
+\end{enumerate}
+Nun haben wir auch schon den ersten Schritt fertig wir haben eine Normalform
+\paragraph{Nun legen wir ein Simplex Tableu an}\mbox{}\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
+	\hline
+	(1)&$x_{3}$&2&2&1&0&0&16& \\
+	\hline
+	(2)&$x_{4}$&4&2&0&1&0&24& \\
+	\hline
+	(3)&$x_{5}$&4&6&0&0&1&36& \\
+	\hline
+	(3')&F&-80&-60&0&0&0&0&\\
+	\hline
+\end{tabular}\\\\
+Perfekt dies ist die Grundform von unserem Simplex Tableu
+\paragraph{Nun suchen wir das sogenannte Pivot Element}
+Dafür suhen wir in Zeile (3') nach dem höchsten negativen Wert der BVs also in diesem Fall 80\\\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
+	\hline
+	(1)&$x_{3}$&2&2&1&0&0&16& \\
+	\hline
+	(2)&$x_{4}$&4&2&0&1&0&24& \\
+	\hline
+	(3)&$x_{5}$&4&6&0&0&1&36& \\
+	\hline
+	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
+	\hline
+\end{tabular}\\\\
+Es geht also um folgende Spalte (nun Rot eingefärbt) auch genannt Pivotspalte\\\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
+	\hline
+	(1)&$x_{3}$&\cellcolor{red}2&2&1&0&0&16& \\
+	\hline
+	(2)&$x_{4}$&\cellcolor{red}4&2&0&1&0&24& \\
+	\hline
+	(3)&$x_{5}$&\cellcolor{red}4&6&0&0&1&36& \\
+	\hline
+	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
+	\hline
+\end{tabular}\\\\
+Nun teilen wir die Werte der Spalte $b_{i}$ durch die Werte der Rot markierten Spalte und tragen es in die Spalte $b_{i}/a_{is}$\\ 
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
+	\hline
+	(1)&$x_{3}$&\cellcolor{red}2&2&1&0&0&16&16/2 = 8\\
+	\hline
+	(2)&$x_{4}$&\cellcolor{red}4&2&0&1&0&24&24/4 = 6\\
+	\hline
+	(3)&$x_{5}$&\cellcolor{red}4&6&0&0&1&36&36/4 = 9\\
+	\hline
+	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
+	\hline
+\end{tabular}\\\\
+Nun suchen wir aus dieser Spalte den kleinsten Wert heraus und markieren ihn Gelb\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
+	\hline
+	(1)&$x_{3}$&\cellcolor{red}2&2&1&0&0&16&16/2 = 8\\
+	\hline
+	(2)&$x_{4}$&\cellcolor{red}4&2&0&1&0&24&\cellcolor{yellow}24/4 = 6\\
+	\hline
+	(3)&$x_{5}$&\cellcolor{red}4&6&0&0&1&36&36/4 = 9\\
+	\hline
+	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
+	\hline
+\end{tabular}\\\\
+Wir haben nun also unsere Pivotzeile nämlich die Gelb eingefärbte\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
+	\hline
+	(1)&$x_{3}$&\cellcolor{red}2&2&1&0&0&16&16/2 = 8\\
+	\hline
+	(2)&\cellcolor{yellow}$x_{4}$&\cellcolor{yellow}4&\cellcolor{yellow}2&\cellcolor{yellow}0&\cellcolor{yellow}1&\cellcolor{yellow}0&\cellcolor{yellow}24&\cellcolor{yellow}24/4 = 6\\
+	\hline
+	(3)&$x_{5}$&\cellcolor{red}4&6&0&0&1&36&36/4 = 9\\
+	\hline
+	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
+	\hline
+\end{tabular}\\\\
+An dem Punkt wo sich Pivotzeile und Spalte treffen(Grün eingefärbt) ist unser Pivot Element\\
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+	\hline
+	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
+	\hline
+	(1)&$x_{3}$&\cellcolor{red}2&2&1&0&0&16&16/2 = 8\\
+	\hline
+	(2)&\cellcolor{yellow}$x_{4}$&\cellcolor{green}4&\cellcolor{yellow}2&\cellcolor{yellow}0&\cellcolor{yellow}1&\cellcolor{yellow}0&\cellcolor{yellow}24&\cellcolor{yellow}24/4 = 6\\
+	\hline
+	(3)&$x_{5}$&\cellcolor{red}4&6&0&0&1&36&36/4 = 9\\
+	\hline
+	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
+	\hline
+\end{tabular}\\\\
+\end{document}
