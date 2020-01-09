@@ -1,19 +1,29 @@
 \documentclass{article}
 \usepackage{colortbl} 
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Simplex}
+\lhead{Operation Research}
+\rfoot{Page \thepage} 
 \begin{document}
+\title{Simplex Algorithmus Aufbau}
+\author{Nikolai Kiefer}
+\date{09.01.2020}
+\maketitle
 \paragraph{Einführung}
-Dies ist eine Erklärung des Simplex Algorithmus. Weshalb es ihn gibt und wie er funktioniert\\
-Zu aller erst sollte geklärt werden wann der simplex überhaupt benutzt wird.\\\\ 
+Dies ist eine Erklärung des Simplex Algorithmus\\
+Zu allererst sollte geklärt werden wann der simplex überhaupt benutzt wird.\\\\ 
 \paragraph{Wann wird der Simplex benutzt?}
-Der Simplex wird benutzt um eine maximierungs Problem zu lösen
+Der Simplex wird benutzt um ein Maximierungsproblem zu lösen
 \paragraph{Welche Bedingungen müssen vorherrschen?}
 \begin{itemize}
 	\item{Das Problem muss in der \textbf{Normalform} vorliegen}
-	\item{Die \textbf{rechte Seite} darf \textbf{nicht negativ} sein!!! Ganz wichtig Niko}
+	\item{Die \textbf{rechten Seiten} dürfen \textbf{nicht negativ} sein}
 	\item{Es muss eine \textbf{Einheitsmatrix} unter den Schlupfvariabeln vorliegen}
 \end{itemize}
 \paragraph{Wie sieht die Normalform aus}
-Zu aller erst unser Maximierungsproblem\\
+Zu erst unser Maximierungsproblem\\
 $Max F(x) = 81x_{1} + 60x_{2}$\\\\
 Dann unsere Nebenbedingungen auch Restriktionen genannt
 \begin{enumerate}
@@ -29,7 +39,7 @@ Dadurch sieht die Normalform also so aus\\
 	\item{$4x_{1} + 6x_{2} + x_{5} = 36 $}
 	\item[]{$x_{1},x_{2} \geq 0$}
 \end{enumerate}
-Nun haben wir auch schon den ersten Schritt fertig wir haben eine Normalform
+Nun haben wir auch schon den ersten Schritt fertig. Wir haben eine Normalform
 \paragraph{Nun legen wir ein Simplex Tableu an}\mbox{}\\
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 	\hline
@@ -46,7 +56,7 @@ Nun haben wir auch schon den ersten Schritt fertig wir haben eine Normalform
 \end{tabular}\\\\
 Perfekt dies ist die Grundform von unserem Simplex Tableu
 \paragraph{Nun suchen wir das sogenannte Pivot Element}
-Dafür suhen wir in Zeile (3') nach dem höchsten negativen Wert der BVs also in diesem Fall 80\\\\
+Dafür suchen wir in Zeile (3') nach dem kleinsten negativen Wert der BVs also in diesem Fall -80\\\\
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 	\hline
 	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
@@ -60,7 +70,7 @@ Dafür suhen wir in Zeile (3') nach dem höchsten negativen Wert der BVs also in
 	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
 	\hline
 \end{tabular}\\\\
-Es geht also um folgende Spalte (nun Rot eingefärbt) auch genannt Pivotspalte\\\\
+Es geht also um folgende Spalte (nun rot eingefärbt) auch genannt Pivotspalte\\\\
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 	\hline
 	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
@@ -74,7 +84,7 @@ Es geht also um folgende Spalte (nun Rot eingefärbt) auch genannt Pivotspalte\\
 	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
 	\hline
 \end{tabular}\\\\
-Nun teilen wir die Werte der Spalte $b_{i}$ durch die Werte der Rot markierten Spalte und tragen es in die Spalte $b_{i}/a_{is}$\\ 
+Nun teilen wir die Werte der Spalte $b_{i}$ durch die Werte der rot markierten Spalte und tragen es in die Spalte $b_{i}/a_{is}$\\ 
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 	\hline
 	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
@@ -88,7 +98,7 @@ Nun teilen wir die Werte der Spalte $b_{i}$ durch die Werte der Rot markierten S
 	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
 	\hline
 \end{tabular}\\\\
-Nun suchen wir aus dieser Spalte den kleinsten Wert heraus und markieren ihn Gelb\\
+Nun suchen wir aus dieser Spalte den kleinsten Wert heraus und markieren ihn gelb\\
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 	\hline
 	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
@@ -102,7 +112,7 @@ Nun suchen wir aus dieser Spalte den kleinsten Wert heraus und markieren ihn Gel
 	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
 	\hline
 \end{tabular}\\\\
-Wir haben nun also unsere Pivotzeile nämlich die Gelb eingefärbte\\
+Wir haben nun also unsere Pivotzeile, nämlich die gelb eingefärbte\\
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 	\hline
 	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
@@ -116,7 +126,7 @@ Wir haben nun also unsere Pivotzeile nämlich die Gelb eingefärbte\\
 	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
 	\hline
 \end{tabular}\\\\
-An dem Punkt wo sich Pivotzeile und Spalte treffen(Grün eingefärbt) ist unser Pivot Element\\
+An dem Punkt wo sich Pivotzeile und Spalte treffen(grün eingefärbt) ist unser Pivot Element\\
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 	\hline
 	Zeile & BV & $x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
@@ -130,7 +140,7 @@ An dem Punkt wo sich Pivotzeile und Spalte treffen(Grün eingefärbt) ist unser 
 	(3')&F&\cellcolor{red}-80&-60&0&0&0&0&\\
 	\hline
 \end{tabular}\\\\
-\paragraph{Soweit so gut, Nun fängt der Austauschschritt an}
+\paragraph{Soweit so gut, nun fängt der Austauschschritt an}
 wir haben unser Tableu mit dem Pivot Element\\\\
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 	\hline
@@ -173,7 +183,7 @@ Nun wird das Pivotelement durch Teilen auf 1 gebracht und der Rest der Zeile wir
 	(6')&F&&&&&&&&\\
 	\hline
 \end{tabular}\\\\
-Nun muss für die selbe Spalte wie das Pivot Element 0 eingetragen werden bzw. wird die Zeile so oft auf die anderen Addiert bzw. Subtrahiert bis es 0 ergibt. Dazu gleich mehr(wir haben es Gelb eingefärbt)\\
+Nun muss für die selbe Spalte wie das Pivot Element 0 eingetragen werden bzw. wird die Zeile so oft auf die anderen addiert bzw. subtrahiert bis es 0 ergibt. Dazu gleich mehr(wir haben es gelb eingefärbt)\\
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
 	\hline
 	Zeile & BV &$x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$&Operation\\
@@ -187,7 +197,7 @@ Nun muss für die selbe Spalte wie das Pivot Element 0 eingetragen werden bzw. w
 	(6')&F&&&&&&&&\\
 	\hline
 \end{tabular}\\\\
-Nun für also für Zeile (4) bspw. muss Zeile(5) zweimal bzw. Zeile (2) ein halbes mal abezogen werden(wir färben es grün ein)\\
+Nun also für Zeile (4) bspw. muss Zeile(5) zweimal bzw. Zeile (2) ein halbes mal abezogen werden(wir färben es grün ein)\\
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
 	\hline
 	Zeile & BV &$x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$&Operation\\
@@ -201,7 +211,7 @@ Nun für also für Zeile (4) bspw. muss Zeile(5) zweimal bzw. Zeile (2) ein halb
 	(6')&F&&&&&&&&\\
 	\hline
 \end{tabular}\\\\
-Das geliche für Zeile (6) (wieder Grün eingefärbt)\\
+Das gleiche für Zeile (6) (wieder grün eingefärbt)\\
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
 	\hline
 	Zeile & BV &$x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$&Operation\\
@@ -229,9 +239,9 @@ Zu guter letzt natürlich noch die (6`) Zeile (hier Blau gefärbt)\\
 	(6')&F&\cellcolor{blue}0&\cellcolor{blue}-20&\cellcolor{blue}0&\cellcolor{blue}20&\cellcolor{blue}0&\cellcolor{blue}480&&(3')+20(5)\\
 	\hline
 \end{tabular}\\\\
-Wären nun in der (6') Zeile keine negativen Zahlen hätten wir eine optimale Lösung. Da aber noch die -20 drin stehen können wir weiter optimieren. Hätten wir bereits eine optimale Lösung müssten wir nu noch die Spalte $b_{i}$ ablesen. Da dort die Werte zu den getauschten BVs stehen und der gesamt Wert.\\\\
+Wären nun in der (6') Zeile keine negativen Zahlen hätten wir eine optimale Lösung. Da aber noch die -20 drin stehen können wir weiter optimieren. Hätten wir bereits eine optimale Lösung müssten wir nur noch die Spalte $b_{i}$ ablesen. Da dort die Werte zu den getauschten BVs stehen und der Gesamtwert.\\\\
 Da dem aber nicht so ist müssen wir eine weitere Iteration machen und wieder schauen.\\
-Dies habe ich hier gemacht und wie sie sehen, gibt es keine negative Zahl mehr in zeile (9'). Dies bedeutet das es nichts mehr zu optimieren gibt. Wir können nun die optimale Lösung ablesen. Ich habe es hierfür Grün eingefärbt. 
+Dies habe ich hier gemacht und wie man sieht, gibt es keine negative Zahl mehr in Zeile (9'). Dies bedeutet dass es nichts mehr zu optimieren gibt. Wir können nun die optimale Lösung ablesen. Ich habe es hierfür grün eingefärbt. 
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 	\hline
 	Zeile & BV &$x_{1}$&$x_{2}$&$x_{3}$&$x_{4}$&$x_{5}$&$b_{i}$&$b_{i}/a_{is}$\\
